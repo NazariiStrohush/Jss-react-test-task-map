@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {FormGroup, InputGroup, FormControl, Button} from 'react-bootstrap';
 
 import 'meteor/oleh:foursquare';
@@ -8,22 +9,20 @@ export default class VenueFindForm extends React.Component{
     super(props);
   }
 
-  _onChange(event){
-  	const query = {
-  	  text: event.target.value
-  	};
-    this.props.handleQuery(query);
+  _onButtonClick(event){
+    this.props.handleQuery(ReactDOM.findDOMNode(this.refs.queryText).value);
+    ReactDOM.findDOMNode(this.refs.queryText).value = '';
   }
 
   render(){
   	return <FormGroup>
       <InputGroup>
         <FormControl 
+          ref='queryText'
           type='text'
-          onChange={this._onChange.bind(this)} 
         />
         <InputGroup.Button>
-          <Button>Find</Button>
+          <Button onClick={this._onButtonClick.bind(this)}>Find</Button>
         </InputGroup.Button>
       </InputGroup>
     </FormGroup>
