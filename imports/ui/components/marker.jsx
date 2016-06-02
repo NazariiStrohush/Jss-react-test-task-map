@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react';
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
 
-const tooltip = text => <Tooltip><strong>{ text }</strong></Tooltip>;
+const tooltip = (text, key) => <Tooltip id = {key}><strong>{ text }</strong></Tooltip>;
 
 export default class Marker extends Component {
   constructor(props) {
