@@ -38,12 +38,14 @@ export default class Index extends React.Component{
     return (<div>
       <h3>Venues find</h3>
       <VenueFindForm handleQuery={this._setQuery.bind(this)} /> 
-      <GMap handleCenter={this._setCenter.bind(this)} markers={
-        this.state.venues.map((venue)=>{
+      <GMap 
+        handleCenter={this._setCenter.bind(this)} 
+        markers={this.state.venues.map((venue)=>{
           return {
             key: venue.id,
             lat: venue.location.lat, 
-            lng: venue.location.lng
+            lng: venue.location.lng,
+            text: venue.name
           }
         })} />
     </div>);

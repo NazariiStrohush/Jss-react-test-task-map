@@ -1,4 +1,7 @@
 import React, { PropTypes, Component } from 'react';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+
+const tooltip = text => <Tooltip><strong>{ text }</strong></Tooltip>;
 
 export default class Marker extends Component {
   constructor(props) {
@@ -7,9 +10,11 @@ export default class Marker extends Component {
 
   render() {
     return (
-       <div style={this.props.style}>
-          <img {...this.props.image}></img>
-       </div>
+      <OverlayTrigger placement="top" overlay={ tooltip(this.props.text, this.props.key) }>
+         <div style={this.props.style}>
+            <img {...this.props.image}></img>
+         </div>
+      </OverlayTrigger> 
     );
   }
 }
@@ -21,6 +26,7 @@ Marker.defaultProps = {
     width: '18px'
   },
   style: {
+    cursor: 'pointer',
     position: 'absolute',
     width: 20,
     height: 20,
