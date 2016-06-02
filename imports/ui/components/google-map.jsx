@@ -24,7 +24,7 @@ export default class MapPage extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}>
           {this.props.markers.map(function(marker){
-            return <Marker key={marker.lat+marker.lng} lat={marker.lat} lng={marker.lng} text={marker.text}/>;
+            return <Marker {...marker}/>;
           })}
         </GoogleMap>
       </div>
