@@ -3,14 +3,21 @@ import React, {propTypes, Component} from 'react';
 import GoogleMap from 'google-map-react';
 import Marker from './marker.jsx';
 
+
 export default class MapPage extends Component {
   constructor(props) {
     super(props);
   }
+
+  _onChange({center, zoom, bounds, marginBounds}){
+    this.props.handleCenter(center);
+  }
+
   render() {
     return (
       <div style={this.props.style}>
         <GoogleMap
+          onChange={this._onChange.bind(this)}
           bootstrapURLKeys={{
             key: this.props.apiKey
           }}
