@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {FormGroup, InputGroup, FormControl, Button} from 'react-bootstrap';
 
-import 'meteor/oleh:foursquare';
-
 export default class VenueFindForm extends React.Component{
   constructor(props){
     super(props);

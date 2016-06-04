@@ -24,3 +24,6 @@ check
 lfergon:exportcsv
 oleh:foursquare
 underscore
+react-meteor-data
+mdg:validated-method
+aldeed:simple-schema
