@@ -1,6 +1,7 @@
 import React from 'react';
 import GMap from './google-map.jsx';
 import VenueFindForm from './venue-find-form.jsx';
+import VenuesList from './venues-list.jsx';
 import QueriesListContainer from '../containers/queries-list.jsx';
 import { insertQuery } from '/imports/api/queries/methods.js';
 
@@ -18,11 +19,11 @@ export default class Index extends React.Component{
         venues: []
     };
   }
-  _setCenter(center){
+  _getCurrentCenterLatLng(center){
     this.setState({center});
   }
 
-  _setQuery(query){
+  _findVenues(query){
     const params = {
       ll: `${this.state.center.lat},${this.state.center.lng}`,
       query,
@@ -41,6 +42,7 @@ export default class Index extends React.Component{
           distance: result.response.venues[0].location.distance
         });
         this.setState({venues: result.response.venues});
+
       }
     });
   }
@@ -49,9 +51,9 @@ export default class Index extends React.Component{
     return (<div>
       <h3>Venues find</h3>
       <QueriesListContainer/>
-      <VenueFindForm handleQuery={this._setQuery.bind(this)} /> 
+      <VenueFindForm handleQuery={this._findVenues.bind(this)} /> 
       <GMap 
-        handleCenter={this._setCenter.bind(this)} 
+        handleCenter={this._getCurrentCenterLatLng.bind(this)} 
         markers={this.state.venues.map((venue)=>{
           return {
             key: venue.id,
@@ -60,6 +62,7 @@ export default class Index extends React.Component{
             text: venue.name
           }
         })} />
+      <VenuesList venues={this.state.venues}/>
     </div>);
   }
 };
