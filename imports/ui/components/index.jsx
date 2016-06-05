@@ -3,6 +3,7 @@ import GMap from './google-map.jsx';
 import VenueFindForm from './venue-find-form.jsx';
 import VenuesList from './venues-list.jsx';
 import QueriesListContainer from '../containers/queries-list.jsx';
+import AccountsUIWrapper from './accounts-ui-wrapper.jsx';
 import { insertQuery } from '/imports/api/queries/methods.js';
 
 import 'meteor/underscore';
@@ -34,7 +35,6 @@ export default class Index extends React.Component{
       if(error)
         console.log(error);
       else {
-        console.log(result.response.venues);
         insertQuery.call({
           name: query,
           lat: result.response.venues[0].location.lat,
@@ -42,13 +42,13 @@ export default class Index extends React.Component{
           distance: result.response.venues[0].location.distance
         });
         this.setState({venues: result.response.venues});
-
       }
     });
   }
 
   render(){
     return (<div>
+      <AccountsUIWrapper />
       <h3>Venues find</h3>
       <QueriesListContainer/>
       <VenueFindForm handleQuery={this._findVenues.bind(this)} /> 
