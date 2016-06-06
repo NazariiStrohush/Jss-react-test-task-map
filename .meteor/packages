@@ -28,3 +28,4 @@ react-meteor-data
 mdg:validated-method
 aldeed:simple-schema
 accounts-ui
+service-configuration

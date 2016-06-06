@@ -1,25 +1,29 @@
+import 'meteor/underscore';
+import 'meteor/oleh:foursquare';
+import { Button } from 'react-bootstrap';
+import { Meteor } from 'meteor/meteor';
+import { insertQuery } from '/imports/api/queries/methods.js';
 import React from 'react';
+
+import AccountsUIWrapper from './accounts-ui-wrapper.jsx';
 import GMap from './google-map.jsx';
 import VenueFindForm from './venue-find-form.jsx';
 import VenuesList from './venues-list.jsx';
 import QueriesListContainer from '../containers/queries-list.jsx';
-import AccountsUIWrapper from './accounts-ui-wrapper.jsx';
-import { insertQuery } from '/imports/api/queries/methods.js';
-
-import 'meteor/underscore';
-import 'meteor/oleh:foursquare';
+import LoginWithButton from './login-with-services.jsx';
 
 export default class Index extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-        center: {
-          lat: 0,
-          lng: 0
-        },
-        venues: []
+      center: {
+        lat: 0,
+        lng: 0
+      },
+      venues: []
     };
   }
+
   _getCurrentCenterLatLng(center){
     this.setState({center});
   }
@@ -49,6 +53,7 @@ export default class Index extends React.Component{
   render(){
     return (<div>
       <AccountsUIWrapper />
+      <LoginWithButton name='Google'/>
       <h3>Venues find</h3>
       <QueriesListContainer/>
       <VenueFindForm handleQuery={this._findVenues.bind(this)} /> 

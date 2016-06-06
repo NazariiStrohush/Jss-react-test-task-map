@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
  
 import { Queries } from '/imports/api/queries.js';

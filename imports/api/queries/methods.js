@@ -30,15 +30,3 @@ export const removeQuery = new ValidatedMethod({
     }
   },
 });
-
-/*export const updateDocument = new ValidatedMethod({
-  name: 'documents.update',
-  validate: new SimpleSchema({
-    _id: { type: String },
-    'update.title': { type: String, optional: true },
-  }).validator(),
-  run({ _id, update }) {
-    Documents.update(_id, { $set: update });
-  },
-});
-*/
