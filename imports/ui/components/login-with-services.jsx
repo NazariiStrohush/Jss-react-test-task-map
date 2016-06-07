@@ -10,31 +10,45 @@ class LoginWith extends React.Component{
   click(){
     if(!this.props.logged){
       Meteor['loginWith'+this.props.name]({
-      requestPermissions: this.props.requestPermissions
-    }, (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
+        requestPermissions: this.props.requestPermissions
+      }, (err) => {
+        if (err) {
+          this.props.onErrorLogin(err);
+        } else {
+          this.props.onSuccessLogin();
+        }
+      });
     } else {
-      Meteor.logout();
+      Meteor.logout(() => {
+        this.props.onSuccessLogout();
+      });
     }
   }
 
   render(){
   	return <div>
-      <Button onClick={this.click.bind(this)}>{(this.props.logged ? 'Logout from ' : 'Login with ') + this.props.name}</Button>
+      <Button 
+        {...this.props.style} 
+        onClick={this.click.bind(this)}>{(this.props.logged ? 'Logout from ' : 'Login with ') + this.props.name}
+      </Button>
     </div>
   }
 };
 
 LoginWith.propTypes = {
   requestPermissions: React.PropTypes.array,
-  name: React.PropTypes.string.isRequired
+  name: React.PropTypes.string.isRequired,
+  style: React.PropTypes.object,
+  onErrorLogin: React.PropTypes.func,
+  onSuccessLogin: React.PropTypes.func,
+  onSuccessLogout: React.PropTypes.func
 }
 
 LoginWith.defaultProps = {
-  requestPermissions: ['profile', 'email']
+  requestPermissions: ['profile', 'email'],
+  onErrorLogin: (err) => { console.log(err) },
+  onSuccessLogin: ()=>{},
+  onSuccessLogout: ()=>{}
 }
 
 export default LoginWithButton = createContainer(() => {

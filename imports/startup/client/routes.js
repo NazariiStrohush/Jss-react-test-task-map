@@ -17,10 +17,10 @@ const requireAuth = (nextState, replace) => {
 };
 
 Meteor.startup( () => {
-  render( 
+  render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-        <IndexRoute component={ Index } /*onEnter={ requireAuth }*//>
+        <IndexRoute component={ Index } onEnter={ requireAuth }/>
         <Route path="login" component={ LoginPage }/>
       </Route>
     </Router>, 

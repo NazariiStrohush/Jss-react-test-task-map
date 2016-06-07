@@ -9,7 +9,7 @@ export default class MapPage extends Component {
     super(props);
   }
 
-  _onChange({center, zoom, bounds, marginBounds}){
+  changeMapCenter({center, zoom, bounds, marginBounds}){
     this.props.handleCenter(center);
   }
 
@@ -17,7 +17,7 @@ export default class MapPage extends Component {
     return (
       <div style={this.props.style}>
         <GoogleMap
-          onChange={this._onChange.bind(this)}
+          onChange={this.changeMapCenter.bind(this)}
           bootstrapURLKeys={{
             key: this.props.apiKey
           }}
@@ -35,7 +35,7 @@ export default class MapPage extends Component {
 MapPage.defaultProps = {
   markers: [],
   style: {
-    width: '250px', 
+    width: '100%', 
     height: '250px'
   },
   center: {

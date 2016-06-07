@@ -7,20 +7,28 @@ export default class VenueFindForm extends React.Component{
     super(props);
   }
 
-  _onButtonClick(event){
+  clickFindButton(event){
     this.props.handleQuery(ReactDOM.findDOMNode(this.refs.queryText).value);
+    ReactDOM.findDOMNode(this.refs.queryText).value = '';
+  }
+
+  clickClearButton(){
+    this.props.clearResults();
     ReactDOM.findDOMNode(this.refs.queryText).value = '';
   }
 
   render(){
   	return <FormGroup>
       <InputGroup>
+        <InputGroup.Button>
+          <Button bsStyle='warning' onClick={this.clickClearButton.bind(this)}>Clear</Button>
+        </InputGroup.Button>
         <FormControl 
           ref='queryText'
           type='text'
         />
         <InputGroup.Button>
-          <Button onClick={this._onButtonClick.bind(this)}>Find</Button>
+          <Button bsStyle='primary' onClick={this.clickFindButton.bind(this)}>Find</Button>
         </InputGroup.Button>
       </InputGroup>
     </FormGroup>

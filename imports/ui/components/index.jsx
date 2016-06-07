@@ -1,16 +1,15 @@
 import 'meteor/underscore';
 import 'meteor/oleh:foursquare';
+
 import { Button } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { insertQuery } from '/imports/api/queries/methods.js';
 import React from 'react';
 
-import AccountsUIWrapper from './accounts-ui-wrapper.jsx';
 import GMap from './google-map.jsx';
 import VenueFindForm from './venue-find-form.jsx';
 import VenuesList from './venues-list.jsx';
 import QueriesListContainer from '../containers/queries-list.jsx';
-import LoginWithButton from './login-with-services.jsx';
 
 export default class Index extends React.Component{
   constructor(props){
@@ -24,11 +23,15 @@ export default class Index extends React.Component{
     };
   }
 
-  _getCurrentCenterLatLng(center){
+  getCurrentCenterLatLng(center){
     this.setState({center});
   }
 
-  _findVenues(query){
+  clearFindedVenues(){
+    this.setState({venues: []});
+  }
+
+  findVenues(query){
     const params = {
       ll: `${this.state.center.lat},${this.state.center.lng}`,
       query,
@@ -52,13 +55,14 @@ export default class Index extends React.Component{
 
   render(){
     return (<div>
-      <AccountsUIWrapper />
-      <LoginWithButton name='Google'/>
       <h3>Venues find</h3>
       <QueriesListContainer/>
-      <VenueFindForm handleQuery={this._findVenues.bind(this)} /> 
+      <VenueFindForm 
+        handleQuery={this.findVenues.bind(this)} 
+        clearResults={this.clearFindedVenues.bind(this)}
+        /> 
       <GMap 
-        handleCenter={this._getCurrentCenterLatLng.bind(this)} 
+        handleCenter={this.getCurrentCenterLatLng.bind(this)} 
         markers={this.state.venues.map((venue)=>{
           return {
             key: venue.id,
