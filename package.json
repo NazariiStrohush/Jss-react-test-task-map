@@ -5,6 +5,15 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "meteor-node-stubs": "~0.2.0"
+    "bootstrap": "^3.3.6",
+    "google-map-react": "^0.13.0",
+    "meteor-node-stubs": "~0.2.0",
+    "react": "^15.1.0",
+    "react-addons-pure-render-mixin": "^15.1.0",
+    "react-bootstrap": "^0.29.4",
+    "react-dom": "^15.1.0",
+    "react-google-maps": "^4.11.0",
+    "react-router": "^2.4.1",
+    "react-router-bootstrap": "^0.23.0"
   }
 }
