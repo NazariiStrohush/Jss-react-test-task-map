@@ -10,6 +10,7 @@ import GMap from './google-map.jsx';
 import VenueFindForm from './venue-find-form.jsx';
 import VenuesList from './venues-list.jsx';
 import QueriesListContainer from '../containers/queries-list.jsx';
+import ExportCsvButton from './export-csv-button.jsx';
 
 export default class Index extends React.Component{
   constructor(props){
@@ -71,6 +72,8 @@ export default class Index extends React.Component{
             text: venue.name
           }
         })} />
+      <ExportCsvButton data={this.state.venues}
+      />
       <VenuesList venues={this.state.venues}/>
     </div>);
   }
