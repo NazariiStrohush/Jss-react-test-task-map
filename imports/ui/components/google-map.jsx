@@ -39,8 +39,8 @@ MapPage.defaultProps = {
     height: '250px'
   },
   center: {
-    lat: 59.938043, 
-    lng: 30.337157
+    lat: 35.6895000, 
+    lng: 139.6917100
   },
   zoom: 9,
   apiKey: 'AIzaSyDTuCROZWUGNj7BcNQbWNzcIhbG4mqW0D8'

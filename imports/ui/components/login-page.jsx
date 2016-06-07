@@ -20,9 +20,13 @@ export default class LoginPage extends Component {
   }
 
   render() {
-    return <LoginWithButton 
-      name='Google' 
-      onSuccessLogin={this.loginSuccess.bind(this)}
-    />
+    return <div>
+    <h1>Please login</h1>
+      <LoginWithButton 
+        name='Google'
+        bsSize='large' 
+        onSuccessLogin={this.loginSuccess.bind(this)}
+      />
+    </div>
   }
 }
